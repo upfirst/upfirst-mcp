@@ -1,0 +1,15 @@
+{
+  "name": "upfirst",
+  "version": "1.0.0",
+  "description": "Run your Upfirst AI receptionist from your AI assistant. Review calls and transcripts, and update greetings, knowledge, skills, and custom actions.",
+  "author": {
+    "name": "Upfirst",
+    "email": "support@upfirst.ai",
+    "url": "https://upfirst.ai"
+  },
+  "homepage": "https://upfirst.ai/docs/mcp",
+  "repository": "https://github.com/upfirst/upfirst-mcp",
+  "license": "MIT",
+  "keywords": ["upfirst", "ai receptionist", "answering service", "phone calls", "mcp"],
+  "mcpServers": "./.mcp.json"
+}

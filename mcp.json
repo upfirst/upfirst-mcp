@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "upfirst": {
+      "type": "http",
+      "url": "https://mcp.upfirst.ai",
+      "auth": {
+        "CLIENT_ID": "https://upfirst.github.io/upfirst-mcp/oauth/cursor.json"
+      }
+    }
+  }
+}

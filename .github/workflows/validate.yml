@@ -1,0 +1,50 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Check setup files
+        run: node scripts/validate.mjs
+
+      - name: Check that no published client document changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            base="origin/$BASE_REF"
+          elif [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "First push to this branch. There is nothing to compare."
+            exit 0
+          else
+            base="$BEFORE"
+            if ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+              git fetch --no-tags origin "$base" || {
+                echo "Cannot find the previous commit $base. Force pushes to main are not allowed."
+                exit 1
+              }
+            fi
+          fi
+
+          # M = changed, D = deleted, T = type changed (for example, replaced by a link).
+          # Renames show as a delete plus an add, so they are caught too.
+          changed=$(git diff --no-renames --name-status --diff-filter=MDT "$base" HEAD -- oauth/)
+          if [ -n "$changed" ]; then
+            echo "These client documents were changed or deleted. Add a new file instead:"
+            echo "$changed"
+            exit 1
+          fi

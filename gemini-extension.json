@@ -1,0 +1,15 @@
+{
+  "name": "upfirst",
+  "version": "1.0.0",
+  "description": "Run your Upfirst AI receptionist from your AI assistant. Review calls and transcripts, and update greetings, knowledge, skills, and custom actions.",
+  "mcpServers": {
+    "upfirst": {
+      "url": "https://mcp.upfirst.ai",
+      "type": "http",
+      "oauth": {
+        "enabled": true,
+        "clientId": "https://upfirst.github.io/upfirst-mcp/oauth/gemini-cli.json"
+      }
+    }
+  }
+}

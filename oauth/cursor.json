@@ -1,0 +1,13 @@
+{
+  "client_id": "https://upfirst.github.io/upfirst-mcp/oauth/cursor.json",
+  "client_name": "Upfirst for Cursor",
+  "client_uri": "https://github.com/upfirst/upfirst-mcp",
+  "redirect_uris": [
+    "http://localhost:8787/callback",
+    "http://127.0.0.1:8787/callback",
+    "https://www.cursor.com/agents/mcp/oauth/callback"
+  ],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none"
+}

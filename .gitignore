@@ -1,0 +1,14 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+
+# Secrets. The MCP Registry signing key must never be committed.
+.env
+.env.*
+*.pem
+
+# Local AI tool settings and notes. They hold internal context.
+.claude/
+CLAUDE.local.md

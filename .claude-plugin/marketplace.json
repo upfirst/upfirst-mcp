@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "upfirst",
+  "description": "Upfirst plugins for Claude Code",
+  "owner": {
+    "name": "Upfirst",
+    "email": "support@upfirst.ai"
+  },
+  "plugins": [
+    {
+      "name": "upfirst",
+      "description": "Run your Upfirst AI receptionist from your AI assistant. Review calls and transcripts, and update greetings, knowledge, skills, and custom actions.",
+      "version": "1.0.0",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://upfirst.ai/docs/mcp"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help with Upfirst or the MCP server
+    url: https://help.upfirst.ai/en/
+    about: Your account, your receptionist, or a tool that does not work. Our support team can help.
+  - name: Upfirst MCP docs
+    url: https://upfirst.ai/docs/mcp
+    about: Setup for every client and a reference for all tools.
+  - name: Report a security problem
+    url: https://github.com/upfirst/upfirst-mcp/security/policy
+    about: Please do not open a public issue for a security problem.
