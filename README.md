@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://cursor.com/install-mcp?name=upfirst&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLnVwZmlyc3QuYWkiLCJhdXRoIjp7IkNMSUVOVF9JRCI6Imh0dHBzOi8vdXBmaXJzdC5naXRodWIuaW8vdXBmaXJzdC1tY3Avb2F1dGgvY3Vyc29yLmpzb24ifX0%3D"><img alt="Add to Cursor" src="https://cursor.com/deeplink/mcp-install-dark.svg" height="32"></a>
+  <a href="https://cursor.com/install-mcp?name=upfirst&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vbWNwLnVwZmlyc3QuYWkifQ%3D%3D"><img alt="Add to Cursor" src="https://cursor.com/deeplink/mcp-install-dark.svg" height="32"></a>
   <a href="https://insiders.vscode.dev/redirect/mcp/install?name=upfirst&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.upfirst.ai%22%7D"><img alt="Install in VS Code" src="https://img.shields.io/badge/VS_Code-Install_server-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white" height="32"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/upfirst/upfirst-mcp?style=flat-square" height="32"></a>
 </p>
@@ -93,18 +93,13 @@ Click **Add to Cursor** at the top of this page. Or add this to `~/.cursor/mcp.j
 {
   "mcpServers": {
     "upfirst": {
-      "url": "https://mcp.upfirst.ai",
-      "auth": {
-        "CLIENT_ID": "https://upfirst.github.io/upfirst-mcp/oauth/cursor.json"
-      }
+      "url": "https://mcp.upfirst.ai"
     }
   }
 }
 ```
 
-Cursor needs a client ID to sign in to Upfirst. The ID is the address of a small public file in this repository. It tells Upfirst which app is asking. It is not a secret.
-
-You need a current version of Cursor. Older versions use a sign-in method that Upfirst does not support. If sign-in fails, update Cursor and try again.
+Cursor prompts you to sign in the first time it uses the server. If sign-in fails, update Cursor and try again.
 
 </details>
 
