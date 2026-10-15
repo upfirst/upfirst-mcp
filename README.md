@@ -20,7 +20,7 @@
 
 ## What this is
 
-[Upfirst](https://upfirst.ai) answers your business calls with an AI receptionist. The Upfirst MCP server connects your receptionist to AI assistants like Claude, ChatGPT, Gemini CLI, Cursor, and VS Code. You manage it by asking, not by clicking.
+[Upfirst](https://upfirst.ai) answers your business calls with an AI receptionist. The Upfirst MCP server connects your receptionist to AI assistants like Claude, ChatGPT, Cursor, Antigravity, Gemini CLI, and VS Code. You manage it by asking, not by clicking.
 
 Upfirst hosts the server at `https://mcp.upfirst.ai`. This repository holds only the setup files that AI clients and directories use to connect to it. The server code is not in this repository.
 
@@ -70,6 +70,17 @@ gemini extensions install https://github.com/upfirst/upfirst-mcp
 ```
 
 Then run `/mcp auth upfirst` in Gemini CLI and sign in.
+
+</details>
+
+<details>
+<summary><b>Antigravity</b></summary>
+
+```sh
+agy plugin install https://github.com/upfirst/upfirst-mcp
+```
+
+Then open Agent settings, go to **Customizations**, and click **Authenticate** next to Upfirst. Sign in to Upfirst in the browser, copy the code it shows, paste it into Antigravity, and click **Submit**.
 
 </details>
 

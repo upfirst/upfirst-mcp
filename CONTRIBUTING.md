@@ -17,12 +17,15 @@ This repository holds the setup files for the hosted Upfirst MCP server. The ser
 | `gemini-extension.json` | Gemini CLI and its extensions gallery |
 | `.cursor-plugin/plugin.json`, `mcp.json` | Cursor plugin and the Cursor marketplace |
 | `.claude-plugin/`, `.mcp.json` | Claude Code plugin marketplace |
+| `plugin.json`, `mcp_config.json` | Antigravity plugin |
 | `server.json` | Official MCP Registry |
 | `oauth/*.json` | Client ID documents. GitHub Pages serves them, and Upfirst reads them when a client signs in. |
 | `assets/` | Logos |
 | `scripts/validate.mjs` | Checks that the files above agree with each other and that Upfirst accepts the client documents. It runs on every pull request and every push to `main`. It does not replace the official schema checks of each directory. |
 
-Cursor uses `mcp.json` and Claude Code uses `.mcp.json`. They differ because Cursor needs a client ID to sign in and Claude Code does not.
+Cursor uses `mcp.json`, Claude Code uses `.mcp.json`, and Antigravity uses `mcp_config.json`. They differ because Cursor and Antigravity need a client ID to sign in and Claude Code does not. Antigravity also names the server address `serverUrl` instead of `url`.
+
+The Antigravity `plugin.json` has no version, because Antigravity allows only `name` and `description` in it.
 
 ## Rules
 
