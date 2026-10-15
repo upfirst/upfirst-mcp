@@ -37,6 +37,8 @@ const cursorMcp = readJson("mcp.json");
 const claudePlugin = readJson(".claude-plugin/plugin.json");
 const claudeMarketplace = readJson(".claude-plugin/marketplace.json");
 const claudeMcp = readJson(".mcp.json");
+const antigravityPlugin = readJson("plugin.json");
+const antigravityMcp = readJson("mcp_config.json");
 const registry = readJson("server.json");
 
 // Every manifest has the same version, and it is a real version number.
@@ -56,22 +58,32 @@ for (const [file, version] of Object.entries(versions)) {
 check(new Set(Object.values(versions)).size === 1, `Versions differ: ${JSON.stringify(versions)}`);
 
 // Every manifest has exactly one server, and it is ours.
-const serverLists = {
-  "gemini-extension.json": gemini?.mcpServers,
-  "mcp.json": cursorMcp?.mcpServers,
-  ".mcp.json": claudeMcp?.mcpServers,
-};
-for (const [file, servers] of Object.entries(serverLists)) {
+// Antigravity names the URL field `serverUrl`; the other clients name it `url`.
+const serverLists = [
+  { file: "gemini-extension.json", servers: gemini?.mcpServers, urlField: "url" },
+  { file: "mcp.json", servers: cursorMcp?.mcpServers, urlField: "url" },
+  { file: ".mcp.json", servers: claudeMcp?.mcpServers, urlField: "url" },
+  { file: "mcp_config.json", servers: antigravityMcp?.mcpServers, urlField: "serverUrl" },
+];
+for (const { file, servers, urlField } of serverLists) {
   const names = Object.keys(servers ?? {});
   check(
     names.length === 1 && names[0] === SERVER_NAME,
     `${file}: mcpServers must contain only "${SERVER_NAME}", found ${JSON.stringify(names)}`,
   );
-  check(
-    servers?.[SERVER_NAME]?.url === SERVER_URL,
-    `${file}: server URL is ${servers?.[SERVER_NAME]?.url}, expected ${SERVER_URL}`,
-  );
+  const url = servers?.[SERVER_NAME]?.[urlField];
+  check(url === SERVER_URL, `${file}: ${urlField} is ${url}, expected ${SERVER_URL}`);
 }
+
+// Antigravity rejects any plugin.json field other than these.
+const allowedAntigravityPluginFields = ["$schema", "name", "description"];
+check(
+  Object.keys(antigravityPlugin ?? {}).every((field) =>
+    allowedAntigravityPluginFields.includes(field),
+  ),
+  `plugin.json: only ${allowedAntigravityPluginFields.join(", ")} are allowed`,
+);
+check(antigravityPlugin?.name === SERVER_NAME, `plugin.json: name must be "${SERVER_NAME}"`);
 check(
   registry?.remotes?.length === 1 &&
     registry.remotes[0].type === "streamable-http" &&
@@ -165,6 +177,11 @@ const clientContracts = [
       "http://localhost:8787/callback",
       "https://www.cursor.com/agents/mcp/oauth/callback",
     ],
+  },
+  {
+    file: "mcp_config.json",
+    clientId: antigravityMcp?.mcpServers?.[SERVER_NAME]?.oauth?.clientId,
+    requiredRedirectUris: ["https://antigravity.google/oauth-callback"],
   },
 ];
 for (const { file, clientId, requiredRedirectUris } of clientContracts) {

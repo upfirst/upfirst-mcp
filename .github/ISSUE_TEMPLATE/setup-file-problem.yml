@@ -6,6 +6,7 @@ body:
     attributes:
       label: AI client
       options:
+        - Antigravity
         - Gemini CLI
         - Cursor
         - Claude Code

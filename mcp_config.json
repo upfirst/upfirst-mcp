@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "upfirst": {
+      "serverUrl": "https://mcp.upfirst.ai",
+      "oauth": {
+        "clientId": "https://upfirst.github.io/upfirst-mcp/oauth/antigravity.json"
+      }
+    }
+  }
+}

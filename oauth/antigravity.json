@@ -1,0 +1,9 @@
+{
+  "client_id": "https://upfirst.github.io/upfirst-mcp/oauth/antigravity.json",
+  "client_name": "Upfirst for Antigravity",
+  "client_uri": "https://github.com/upfirst/upfirst-mcp",
+  "redirect_uris": ["https://antigravity.google/oauth-callback"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none"
+}
