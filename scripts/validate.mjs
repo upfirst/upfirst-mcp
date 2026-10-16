@@ -33,7 +33,6 @@ function readJson(path) {
 
 const gemini = readJson("gemini-extension.json");
 const cursorPlugin = readJson(".cursor-plugin/plugin.json");
-const cursorMcp = readJson("mcp.json");
 const claudePlugin = readJson(".claude-plugin/plugin.json");
 const claudeMarketplace = readJson(".claude-plugin/marketplace.json");
 const claudeMcp = readJson(".mcp.json");
@@ -61,7 +60,6 @@ check(new Set(Object.values(versions)).size === 1, `Versions differ: ${JSON.stri
 // Antigravity names the URL field `serverUrl`; the other clients name it `url`.
 const serverLists = [
   { file: "gemini-extension.json", servers: gemini?.mcpServers, urlField: "url" },
-  { file: "mcp.json", servers: cursorMcp?.mcpServers, urlField: "url" },
   { file: ".mcp.json", servers: claudeMcp?.mcpServers, urlField: "url" },
   { file: "mcp_config.json", servers: antigravityMcp?.mcpServers, urlField: "serverUrl" },
 ];
@@ -76,7 +74,7 @@ for (const { file, servers, urlField } of serverLists) {
 }
 
 // Antigravity rejects any plugin.json field other than these.
-const allowedAntigravityPluginFields = ["$schema", "name", "description"];
+const allowedAntigravityPluginFields = ["name", "description"];
 check(
   Object.keys(antigravityPlugin ?? {}).every((field) =>
     allowedAntigravityPluginFields.includes(field),
@@ -92,8 +90,8 @@ check(
 );
 
 check(
-  cursorPlugin?.mcpServers === "./mcp.json",
-  ".cursor-plugin/plugin.json: mcpServers must be ./mcp.json",
+  cursorPlugin?.mcpServers === "./.mcp.json",
+  ".cursor-plugin/plugin.json: mcpServers must be ./.mcp.json",
 );
 check(
   claudePlugin?.mcpServers === "./.mcp.json",
@@ -164,19 +162,12 @@ for (const name of readdirSync("oauth")) {
 }
 
 // Each manifest uses a client document with the redirect URIs that its client needs.
+// Claude Code, Cursor, and VS Code publish their own client documents, so they need none here.
 const clientContracts = [
   {
     file: "gemini-extension.json",
     clientId: gemini?.mcpServers?.[SERVER_NAME]?.oauth?.clientId,
     requiredRedirectUris: ["http://localhost/oauth/callback"],
-  },
-  {
-    file: "mcp.json",
-    clientId: cursorMcp?.mcpServers?.[SERVER_NAME]?.auth?.CLIENT_ID,
-    requiredRedirectUris: [
-      "http://localhost:8787/callback",
-      "https://www.cursor.com/agents/mcp/oauth/callback",
-    ],
   },
   {
     file: "mcp_config.json",

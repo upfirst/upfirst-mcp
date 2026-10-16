@@ -13,5 +13,5 @@
   "logo": "assets/logo.png",
   "keywords": ["upfirst", "ai receptionist", "answering service", "phone calls", "mcp"],
   "category": "integrations",
-  "mcpServers": "./mcp.json"
+  "mcpServers": "./.mcp.json"
 }
