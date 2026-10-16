@@ -74,7 +74,7 @@ for (const { file, servers, urlField } of serverLists) {
 }
 
 // Antigravity rejects any plugin.json field other than these.
-const allowedAntigravityPluginFields = ["$schema", "name", "description"];
+const allowedAntigravityPluginFields = ["name", "description"];
 check(
   Object.keys(antigravityPlugin ?? {}).every((field) =>
     allowedAntigravityPluginFields.includes(field),

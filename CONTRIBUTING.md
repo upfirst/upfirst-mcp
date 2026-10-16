@@ -28,8 +28,9 @@ This repository holds the setup files for the hosted Upfirst MCP server. The ser
 
 Upfirst has no dynamic client registration. It accepts a client ID that is the URL of a client ID metadata document, a small public JSON file that describes the client.
 
-- Claude Code, Cursor, and VS Code publish their own documents (Cursor's is `https://cursor.com/oauth/mcp-client.json`), so their config needs only the server URL.
-- Gemini CLI and Antigravity do not publish one. For them, this repository hosts a document in `oauth/`, and their manifests use its URL as a fixed client ID. Antigravity uses `mcp_config.json` and names the server address `serverUrl` instead of `url`.
+- Claude Code, Cursor, VS Code, Codex, and Antigravity CLI 1.1.14 and later publish their own documents (Cursor's is `https://cursor.com/oauth/mcp-client.json`). Their config needs only the server URL.
+- Gemini CLI does not publish one. This repository hosts `oauth/gemini-cli.json` for it, and `gemini-extension.json` uses that URL as a fixed client ID.
+- The Antigravity plugin also uses a document from this repository, `oauth/antigravity.json`. We have not confirmed that the Antigravity app sends its own document. Antigravity uses `mcp_config.json` and names the server address `serverUrl` instead of `url`.
 - `oauth/cursor.json` is no longer used, because Cursor now sends its own document. It stays because published client documents are never deleted (see rule 2).
 
 ## Rules

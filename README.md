@@ -80,7 +80,12 @@ Then run `/mcp auth upfirst` in Gemini CLI and sign in.
 agy plugin install https://github.com/upfirst/upfirst-mcp
 ```
 
-Then open Agent settings, go to **Customizations**, and click **Authenticate** next to Upfirst. Sign in to Upfirst in the browser, copy the code it shows, paste it into Antigravity, and click **Submit**.
+Then sign in:
+
+- **Antigravity CLI:** run `/mcp`, choose the Upfirst server (`upfirst_upfirst`), and select **Authenticate**.
+- **Antigravity app:** open Agent settings, go to **Customizations**, and click **Authenticate** next to Upfirst.
+
+Sign in to Upfirst in the browser, copy the code it shows, and paste it into Antigravity.
 
 </details>
 
